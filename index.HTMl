@@ -1,0 +1,1078 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ras Ddarb</title>
+    <style>
+      body {
+        background-color: #252a62;
+        margin: 0;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        padding: 20px;
+        color: #cdd6f4;
+      }
+
+      nav {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 30px;
+        position: sticky;
+        top: 10px;
+        z-index: 100;
+      }
+
+      .nav-bar {
+        display: flex;
+        gap: 12px;
+        background: rgba(0, 0, 0, 0.25);
+        backdrop-filter: blur(10px);
+        padding: 8px 12px;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        list-style: none;
+        margin: 0;
+      }
+
+      .navBtn {
+        text-decoration: none;
+        color: #ffffff;
+        font-weight: 600;
+        font-size: 14px;
+        padding: 10px 16px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .navBtn:hover {
+        background-color: rgba(255, 255, 255, 0.15);
+        transform: translateY(-1px);
+        box-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+      }
+
+      .navBtn.active {
+        background-color: #ffffff;
+        color: #252a62;
+        box-shadow:
+          0 0 12px rgba(255, 255, 255, 0.6),
+          0 4px 12px rgba(0, 0, 0, 0.2);
+        border: 1px solid #89b4fa;
+      }
+
+      .overview,
+      .what-makes-us-different,
+      .translator-section {
+        max-width: 1000px;
+        margin: 0 auto 32px auto;
+        scroll-margin-top: 100px;
+      }
+
+      ul.feature-list {
+        padding-left: 20px;
+        line-height: 1.8;
+      }
+
+      h2 {
+        color: #ffffff;
+        margin-bottom: 12px;
+      }
+
+      h3 {
+        font-weight: normal;
+        line-height: 1.5;
+        color: #e0e6f8;
+      }
+
+      p {
+        line-height: 1.6;
+        color: #bac2de;
+      }
+
+      /* Level System Grid */
+      .roles-section {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 20px;
+        max-width: 1000px;
+        margin: 30px auto;
+        scroll-margin-top: 100px;
+      }
+
+      .roles-section > h2 {
+        grid-column: 1 / -1;
+        margin-bottom: 0;
+      }
+
+      .roles-section .card {
+        grid-column: span 2;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        background-color: #1e1e2e;
+        border: 1px solid #313244;
+        border-radius: 12px;
+        padding: 24px;
+        color: #cdd6f4;
+        transition: all 0.3s ease;
+      }
+
+      .card-icon {
+        font-size: 2rem;
+        line-height: 1;
+        margin-bottom: 4px;
+      }
+
+      .roles-section .card h2 {
+        color: #ffffff;
+        margin: 8px 0;
+      }
+
+      .roles-section .card p {
+        color: #bac2de;
+        margin: 4px 0;
+      }
+
+      .roles-section .card:hover {
+        background-color: #ffffff;
+        color: #11111b;
+        border-color: #ffffff;
+        transform: translateY(-4px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      }
+
+      .roles-section .card:hover h2,
+      .roles-section .card:hover p {
+        color: #11111b;
+      }
+
+      .roles-section .card-bottom {
+        grid-column: span 3;
+      }
+
+      .note {
+        grid-column: 1 / -1;
+        text-align: center;
+        color: #a6adc8;
+        font-size: 13px;
+        line-height: 1.5;
+        margin-top: 10px;
+      }
+
+      /* Admins & HOO Card Grids */
+      #admins,
+      #HOO {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+        max-width: 1000px;
+        margin: 40px auto;
+        scroll-margin-top: 100px;
+      }
+
+      #admins > h2,
+      #HOO > h2 {
+        grid-column: 1 / -1;
+        margin-bottom: 0;
+      }
+
+      /* Base Profile Card Setup */
+      .intro-card,
+      .creds {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        background-color: #1e1e2e;
+        border: 1px solid #313244;
+        border-radius: 12px;
+        padding: 20px;
+        color: #cdd6f4;
+        transition: all 0.3s ease;
+      }
+
+      .admin-avatar,
+      .creds img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        margin-bottom: 16px;
+        border-radius: 8px;
+        border: 2px solid #313244;
+        box-sizing: border-box;
+        transition: border-color 0.3s ease;
+      }
+
+      .intro-card h2,
+      .creds h2 {
+        color: #ffffff;
+        margin: 4px 0 8px 0;
+      }
+
+      .intro-card p,
+      .creds p {
+        color: #bac2de;
+        margin: 4px 0;
+        line-height: 1.6;
+      }
+
+      /* Base Hover with Shadow */
+      .intro-card:hover {
+        background-color: #ffffff;
+        border-color: #ffffff;
+        transform: translateY(-4px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      }
+
+      .intro-card:hover .admin-avatar {
+        border-color: #d4af37;
+      }
+
+      .intro-card:hover h2,
+      .intro-card:hover p {
+        color: #d4af37;
+      }
+
+      /* Custom Card Themes */
+      .card-mjd {
+        border-color: rgba(186, 151, 230, 0.3);
+      }
+      .card-mjd:hover {
+        background-color: #241d33;
+        border-color: #ba97e6;
+        box-shadow: 0 8px 25px rgba(186, 151, 230, 0.25);
+      }
+      .card-mjd:hover .admin-avatar {
+        border-color: #ba97e6;
+      }
+      .card-mjd:hover h2 {
+        color: #d4bbf5;
+      }
+      .card-mjd:hover p {
+        color: #bac2de;
+      }
+
+      .card-ceo {
+        border-color: rgba(168, 50, 62, 0.3);
+      }
+      .card-ceo:hover {
+        background-color: #2d181c;
+        border-color: #a8323e;
+        box-shadow: 0 8px 25px rgba(168, 50, 62, 0.3);
+      }
+      .card-ceo:hover .admin-avatar {
+        border-color: #e64553;
+      }
+      .card-ceo:hover h2 {
+        color: #e64553;
+      }
+      .card-ceo:hover p {
+        color: #bac2de;
+      }
+
+      .card-guzman {
+        border-color: rgba(140, 38, 48, 0.3);
+      }
+      .card-guzman:hover {
+        background-color: #28181b;
+        border-color: #b33643;
+        box-shadow: 0 8px 25px rgba(179, 54, 67, 0.3);
+      }
+      .card-guzman:hover .admin-avatar {
+        border-color: #ea999c;
+      }
+      .card-guzman:hover h2 {
+        color: #ea999c;
+      }
+      .card-guzman:hover p {
+        color: #bac2de;
+      }
+
+      .card-chippy {
+        border-color: rgba(73, 106, 128, 0.3);
+      }
+      .card-chippy:hover {
+        background-color: #131f28;
+        border-color: #5b8da8;
+        box-shadow: 0 8px 25px rgba(91, 141, 168, 0.25);
+      }
+      .card-chippy:hover .admin-avatar {
+        border-color: #8bd5ca;
+      }
+      .card-chippy:hover h2 {
+        color: #8bd5ca;
+      }
+      .card-chippy:hover p {
+        color: #bac2de;
+      }
+
+      .card-minimm {
+        border-color: rgba(204, 153, 51, 0.3);
+      }
+      .card-minimm:hover {
+        background-color: #2e2413;
+        border-color: #cc9933;
+        box-shadow: 0 8px 25px rgba(204, 153, 51, 0.25);
+      }
+      .card-minimm:hover .admin-avatar {
+        border-color: #e5c890;
+      }
+      .card-minimm:hover h2 {
+        color: #e5c890;
+      }
+      .card-minimm:hover p {
+        color: #bac2de;
+      }
+
+      .card-lmx {
+        border-color: rgba(69, 71, 90, 0.4);
+      }
+      .card-lmx:hover {
+        background-color: #11111b;
+        border-color: #6c7086;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+      }
+      .card-lmx:hover .admin-avatar {
+        border-color: #b8c0e0;
+      }
+      .card-lmx:hover h2 {
+        color: #b8c0e0;
+      }
+      .card-lmx:hover p {
+        color: #bac2de;
+      }
+
+      .card-mala2ika {
+        border-color: rgba(92, 95, 119, 0.3);
+      }
+      .card-mala2ika:hover {
+        background-color: #1e2030;
+        border-color: #8aadf4;
+        box-shadow: 0 8px 25px rgba(138, 173, 244, 0.2);
+      }
+      .card-mala2ika:hover .admin-avatar {
+        border-color: #8aadf4;
+      }
+      .card-mala2ika:hover h2 {
+        color: #8aadf4;
+      }
+      .card-mala2ika:hover p {
+        color: #bac2de;
+      }
+
+      .card-salma {
+        border-color: rgba(168, 92, 78, 0.3);
+      }
+      .card-salma:hover {
+        background-color: #2d1e1c;
+        border-color: #d16d5a;
+        box-shadow: 0 8px 25px rgba(209, 109, 90, 0.25);
+      }
+      .card-salma:hover .admin-avatar {
+        border-color: #f5a97f;
+      }
+      .card-salma:hover h2 {
+        color: #f5a97f;
+      }
+      .card-salma:hover p {
+        color: #bac2de;
+      }
+
+      .card-issy {
+        border-color: rgba(184, 51, 74, 0.3);
+      }
+      .card-issy:hover {
+        background-color: #281619;
+        border-color: #e64553;
+        box-shadow: 0 8px 25px rgba(230, 69, 83, 0.3);
+      }
+      .card-issy:hover .admin-avatar {
+        border-color: #e64553;
+      }
+      .card-issy:hover h2 {
+        color: #e64553;
+      }
+      .card-issy:hover p {
+        color: #bac2de;
+      }
+
+      .card-reda {
+        border-color: rgba(252, 163, 17, 0.3);
+      }
+      .card-reda:hover {
+        background-color: #11172a;
+        border-color: #fca311;
+        transform: translateY(-4px);
+        box-shadow: 0 8px 25px rgba(252, 163, 17, 0.3);
+      }
+      .card-reda:hover img {
+        border-color: #fca311;
+      }
+      .card-reda:hover h2 {
+        color: #fca311;
+      }
+      .card-reda:hover p {
+        color: #e2e8f0;
+      }
+
+      .card-badrr {
+        border-color: rgba(191, 77, 40, 0.3);
+      }
+      .card-badrr:hover {
+        background-color: #301a14;
+        border-color: #bf4d28;
+        box-shadow: 0 8px 25px rgba(191, 77, 40, 0.3);
+      }
+      .card-badrr:hover .admin-avatar {
+        border-color: #f0883e;
+      }
+      .card-badrr:hover h2 {
+        color: #f0883e;
+      }
+      .card-badrr:hover p {
+        color: #bac2de;
+      }
+
+      .card-ebony {
+        border-color: rgba(120, 90, 80, 0.3);
+      }
+      .card-ebony:hover {
+        background-color: #241c19;
+        border-color: #9e7a6d;
+        box-shadow: 0 8px 25px rgba(158, 122, 109, 0.25);
+      }
+      .card-ebony:hover .admin-avatar {
+        border-color: #f2d5cf;
+      }
+      .card-ebony:hover h2 {
+        color: #f2d5cf;
+      }
+      .card-ebony:hover p {
+        color: #bac2de;
+      }
+
+      .card-aisha {
+        border-color: rgba(200, 200, 200, 0.3);
+      }
+      .card-aisha:hover {
+        background-color: #181825;
+        border-color: #cad3f5;
+        box-shadow: 0 8px 25px rgba(202, 211, 245, 0.2);
+      }
+      .card-aisha:hover .admin-avatar {
+        border-color: #ffffff;
+      }
+      .card-aisha:hover h2 {
+        color: #ffffff;
+      }
+      .card-aisha:hover p {
+        color: #bac2de;
+      }
+
+      /* Translator Theme Setup */
+      .translator-card {
+        background-color: #1e1e2e;
+        border: 1px solid #313244;
+        border-radius: 12px;
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .translator-box {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .translator-box label {
+        font-weight: 600;
+        font-size: 14px;
+        color: #89b4fa;
+      }
+
+      .translator-box textarea {
+        background-color: #11111b;
+        border: 1px solid #313244;
+        border-radius: 8px;
+        padding: 12px;
+        color: #cdd6f4;
+        font-family: inherit;
+        font-size: 14px;
+        resize: vertical;
+        outline: none;
+        transition: border-color 0.2s ease;
+      }
+
+      .translator-box textarea:focus {
+        border-color: #89b4fa;
+      }
+
+      .translateBtn {
+        align-self: flex-start;
+        padding: 10px 20px;
+        background-color: #89b4fa;
+        color: #11111b;
+        font-weight: bold;
+        font-size: 14px;
+        border-radius: 6px;
+        border: none;
+        cursor: pointer;
+        transition:
+          background-color 0.2s ease,
+          transform 0.2s ease;
+      }
+
+      .translateBtn:hover {
+        background-color: #b4befe;
+        transform: translateY(-1px);
+      }
+
+      /* Socials Section Grid */
+      #socials-section {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+        max-width: 1000px;
+        margin: 40px auto;
+        scroll-margin-top: 100px;
+      }
+
+      #socials-section > h2 {
+        grid-column: 1 / -1;
+        margin-bottom: 0;
+      }
+
+      .social-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #1e1e2e;
+        border-radius: 12px;
+        padding: 24px;
+        border: 1px solid #313244;
+        text-align: center;
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease,
+          border-color 0.3s ease;
+      }
+
+      .socialBtn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        width: 100%;
+        margin-top: auto;
+        padding: 12px 0;
+        color: #ffffff;
+        font-weight: bold;
+        font-size: 14px;
+        border-radius: 8px;
+        border: none;
+        text-decoration: none;
+        cursor: pointer;
+        transition:
+          transform 0.2s ease,
+          filter 0.2s ease;
+      }
+
+      .socialBtn:hover {
+        transform: scale(1.02);
+        filter: brightness(1.1);
+      }
+
+      .card-tiktok {
+        border-color: rgba(254, 44, 85, 0.3);
+      }
+      .card-tiktok:hover {
+        background-color: #171018;
+        border-color: #fe2c55;
+        transform: translateY(-4px);
+        box-shadow:
+          -4px 4px 20px rgba(37, 244, 238, 0.3),
+          4px -4px 20px rgba(254, 44, 85, 0.4);
+      }
+      .card-tiktok:hover h2 {
+        color: #25f4ee;
+      }
+      .btn-tiktok {
+        background: linear-gradient(135deg, #00f2fe 0%, #fe2c55 100%);
+      }
+
+      .card-instagram {
+        border-color: rgba(225, 48, 108, 0.3);
+      }
+      .card-instagram:hover {
+        background-color: #211320;
+        border-color: #e1306c;
+        transform: translateY(-4px);
+        box-shadow: 0 10px 25px rgba(225, 48, 108, 0.35);
+      }
+      .card-instagram:hover h2 {
+        color: #f89d53;
+      }
+      .btn-instagram {
+        background: linear-gradient(
+          45deg,
+          #f09433 0%,
+          #e6683c 25%,
+          #dc2743 50%,
+          #cc2366 75%,
+          #bc1888 100%
+        );
+      }
+
+      /* Join Section */
+      .join-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        max-width: 1000px;
+        margin: 40px auto 100px auto;
+        scroll-margin-top: 100px;
+      }
+
+      .join-card {
+        display: flex;
+        flex-direction: column;
+        width: 340px;
+        background-color: #1e1e2e;
+        border-radius: 12px;
+        padding: 24px;
+        border: 1px solid #313244;
+        text-align: center;
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+
+      .join-card:hover {
+        transform: scale(1.02);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+      }
+
+      .joinBtn {
+        width: 100%;
+        margin-top: 16px;
+        padding: 10px 0;
+        background-color: #89b4fa;
+        color: #11111b;
+        font-weight: bold;
+        font-size: 14px;
+        border-radius: 6px;
+        border: none;
+        cursor: pointer;
+        transition:
+          background-color 0.2s ease,
+          transform 0.2s ease;
+      }
+
+      .joinBtn:hover {
+        background-color: #b4befe;
+        transform: scale(1.02);
+      }
+
+      @media (max-width: 768px) {
+        body {
+          padding: 12px;
+        }
+        .nav-bar {
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 6px;
+          padding: 6px;
+        }
+        .navBtn {
+          font-size: 12px;
+          padding: 8px 10px;
+        }
+        .roles-section,
+        #admins,
+        #HOO,
+        #socials-section {
+          grid-template-columns: 1fr;
+        }
+        .roles-section .card,
+        .roles-section .card-bottom,
+        .intro-card,
+        .creds,
+        .social-card {
+          grid-column: span 1;
+          width: 100%;
+          box-sizing: border-box;
+        }
+        .join-card {
+          width: 100%;
+          box-sizing: border-box;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <ul class="nav-bar">
+        <li class="navBtn active" data-target="overview-section">Overview</li>
+        <li class="navBtn" data-target="features-section">
+          What makes us different
+        </li>
+        <li class="navBtn" data-target="translator-section">Translator</li>
+        <li class="navBtn" data-target="roles-section">Our level system</li>
+        <li class="navBtn" data-target="admins">Our admins</li>
+        <li class="navBtn" data-target="HOO">Hall of OGs</li>
+        <li class="navBtn" data-target="socials-section">Socials</li>
+        <li class="navBtn" data-target="join-section">Join</li>
+      </ul>
+    </nav>
+
+    <div id="overview-section" class="overview">
+      <h2>Overview</h2>
+      <h3>
+        Ras ddarb is an amazing inclusive community based in Morocco. We have
+        members with different interests so you always have someone to talk to
+        about anything.
+      </h3>
+    </div>
+
+    <div id="features-section" class="what-makes-us-different">
+      <h2>What makes us different</h2>
+      <ul class="feature-list">
+        <li>
+          We have 3 main languages: Arabic, English, and French, so we can
+          communicate with people from all over the world.
+        </li>
+        <li>
+          We have text chat and voice chat channels so you can converse with
+          fellow members whichever way you find comfortable (chilling, gaming,
+          yapping).
+        </li>
+        <li>
+          We have channels to show off your talents to other members, and we are
+          open to any suggestions for improvement.
+        </li>
+        <li>
+          We play video games especially amoung us with each other from time to
+          time and it is super fun so you can join us and cure your boredom
+        </li>
+      </ul>
+    </div>
+
+    <!-- Translator Section -->
+    <div id="translator-section" class="translator-section">
+      <h2>Darija to English Translator</h2>
+      <div class="translator-card">
+        <div class="translator-box">
+          <label for="darijaInput">Moroccan Darija (Arabizi / Numbers):</label>
+          <textarea
+            id="darijaInput"
+            rows="3"
+            placeholder="Type here (e.g., 3afak khoya 9ol lia...)"
+          ></textarea>
+        </div>
+        <button id="translateBtn" class="translateBtn">Translate</button>
+        <div class="translator-box">
+          <label for="englishOutput">English Translation:</label>
+          <textarea
+            id="englishOutput"
+            rows="3"
+            readonly
+            placeholder="Translation will appear here..."
+          ></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div id="roles-section" class="roles-section">
+      <h2>Our level system</h2>
+      <article class="card">
+        <span class="card-icon">🐣</span>
+        <h2>Newbies</h2>
+        <p>
+          Requirements: Join the server you will be at level 0 granting you the
+          role.
+        </p>
+        <p>Perks: Basic text and voice chats to level up.</p>
+      </article>
+      <article class="card">
+        <span class="card-icon">🗿</span>
+        <h2>MEMBER</h2>
+        <p>Requirements: Chat and reach level 5.</p>
+        <p>Perks: Grants you access to the soundboard in voice chat.</p>
+      </article>
+      <article class="card">
+        <span class="card-icon">😎</span>
+        <h2>RESPECTED</h2>
+        <p>Requirements: Reach level 10.</p>
+      </article>
+      <article class="card card-bottom">
+        <span class="card-icon">👴🏽</span>
+        <h2>OG</h2>
+        <p>Requirements: Reach level 20.</p>
+        <p>
+          Perks: Grants you access to the soundboard & screensharing in voice
+          chat.
+        </p>
+      </article>
+      <article class="card card-bottom">
+        <span class="card-icon">👑</span>
+        <h2>VIP</h2>
+        <p>Requirements: Reach level 40.</p>
+        <p>
+          Perks: Grants you access to soundboard, screensharing & priority voice
+          detection.
+        </p>
+      </article>
+      <p class="note">
+        note: the server is always being updated so additional perks might be
+        added soon through the server's mods.
+      </p>
+    </div>
+
+    <div id="admins">
+      <h2>Our admins</h2>
+      <article class="intro-card card-mjd">
+        <img src="mjd.png" alt="Failed to load" class="admin-avatar" />
+        <h2>👑 m4jdzz_</h2>
+        <p>Title: "ANA L2A3LA"</p>
+        <p>Role: Highest role in the server, runs everything in ras ddrb.</p>
+      </article>
+      <article class="intro-card card-ceo">
+        <img src="CEO.png" alt="Failed to load" class="admin-avatar" />
+        <h2>👑 CEO of tchl9im</h2>
+        <p>Title: "ANA L2A3LA"</p>
+        <p>Role: Highest role in the server, runs everything in ras ddrb.</p>
+      </article>
+      <article class="intro-card">
+        <img src="dam.png" alt="Failed to load" class="admin-avatar" />
+        <h2>👑 rexfy</h2>
+        <p>Title: "ANA L2A3LA"</p>
+        <p>Role: Highest role in the server, runs everything in ras ddrb.</p>
+      </article>
+      <article class="intro-card card-guzman">
+        <img src="guzman.png" alt="Failed to load" class="admin-avatar" />
+        <h2>🦸🏽‍♂️ Guzman</h2>
+        <p>Title: "SIDEKICK"</p>
+        <p>Role: second in command ,second highest role in ras ddrb.</p>
+      </article>
+      <article class="intro-card card-chippy">
+        <img src="chi.png" alt="Failed to load" class="admin-avatar" />
+        <h2>🐅 chippy!!</h2>
+        <p>Title: "HEAD OF WA3RIN"</p>
+        <p>
+          Role: trusted directly by the owners of ras ddarb, third highest role
+          in ras ddrb.
+        </p>
+      </article>
+      <article class="intro-card card-minimm">
+        <img src="min.png" alt="Failed to load" class="admin-avatar" />
+        <h2>🐊 Minimm</h2>
+        <p>Title: "LWA3RIN"</p>
+        <p>Role: handle issues</p>
+      </article>
+      <article class="intro-card card-lmx">
+        <img src="lmx.png" alt="Failed to load" class="admin-avatar" />
+        <h2>🐊 looksmaxxer</h2>
+        <p>Title: "LWA3RIN"</p>
+        <p>Role: handle issues</p>
+      </article>
+      <article class="intro-card card-mala2ika">
+        <img src="ml2.png" alt="Failed to load" class="admin-avatar" />
+        <h2>🐊 mala2ika</h2>
+        <p>Title: "LWA3RIN"</p>
+        <p>Role: handle issues</p>
+      </article>
+      <article class="intro-card card-salma">
+        <img src="slma.png" alt="Failed to load" class="admin-avatar" />
+        <h2>🐊 salma</h2>
+        <p>Title: "LWA3RIN"</p>
+        <p>Role: handle issues</p>
+      </article>
+      <article class="intro-card card-issy">
+        <img src="isy.png" alt="Failed to load" class="admin-avatar" />
+        <h2>🆘 issy</h2>
+        <p>Title: "HELPERS"</p>
+        <p>Role: provide assistance</p>
+      </article>
+      <article class="creds card-reda">
+        <img src="pfp.jpg" alt="Failed to load image" />
+        <h2>redaisvibin2313</h2>
+        <p>Title: "HELPERS"</p>
+        <p>Role: provide assistance,creator of ras ddrb's website</p>
+      </article>
+    </div>
+
+    <div id="HOO">
+      <h2>Hall of OGs</h2>
+      <article class="intro-card card-badrr">
+        <img src="bdr.png" alt="Failed to load" class="admin-avatar" />
+        <h2>👴🏽 Badrr</h2>
+        <p>Title: "OG"</p>
+        <p>Role: Recognized by everyone</p>
+      </article>
+      <article class="intro-card card-ebony">
+        <img src="ebn.png" alt="Failed to load" class="admin-avatar" />
+        <h2>👴🏽 ebony.</h2>
+        <p>Title: "OG"</p>
+        <p>Role: Recognized by everyone</p>
+      </article>
+      <article class="intro-card card-aisha">
+        <img src="aic.png" alt="Failed to load" class="admin-avatar" />
+        <h2>👴🏽عائشة.</h2>
+        <p>Title: "OG"</p>
+        <p>Role: Recognized by everyone</p>
+      </article>
+    </div>
+
+    <div id="socials-section">
+      <h2>Our Socials</h2>
+      <article class="social-card card-tiktok">
+        <h2>TikTok</h2>
+        <p>
+          Follow us on TikTok to stay updated with short clips, community
+          highlights, and funny moments!
+        </p>
+        <a
+          href="https://www.tiktok.com/@ras_ddrb"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="socialBtn btn-tiktok"
+        >
+          <span>🎵</span> Follow on TikTok
+        </a>
+      </article>
+      <article class="social-card card-instagram">
+        <h2>Instagram</h2>
+        <p>
+          Check out our Instagram for event photos, announcements, story
+          updates, and community posts! (currently unavailable)
+        </p>
+        <a
+          href=""
+          target="_blank"
+          rel="noopener noreferrer"
+          class="socialBtn btn-instagram"
+        >
+          <span>📷</span> Follow on Instagram
+        </a>
+      </article>
+    </div>
+
+    <div id="join-section" class="join-section">
+      <h2>Join us</h2>
+      <article class="join-card">
+        <h2>Your invite</h2>
+        <p>
+          Go ahead!! Join today, don't miss out on the fun that Ras Ddarb will
+          bring to you.
+        </p>
+        <button class="joinBtn">Join</button>
+      </article>
+    </div>
+
+    <script>
+      const navButtons = document.querySelectorAll(".navBtn");
+      const sections = document.querySelectorAll(
+        "#overview-section, #features-section, #translator-section, #roles-section, #admins, #HOO, #socials-section, #join-section",
+      );
+
+      navButtons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const targetId = btn.dataset.target;
+          const targetSection = document.getElementById(targetId);
+          if (targetSection) {
+            targetSection.scrollIntoView({ behavior: "smooth" });
+          }
+        });
+      });
+
+      function setActiveNav(targetId) {
+        navButtons.forEach((btn) => {
+          if (btn.dataset.target === targetId) {
+            btn.classList.add("active");
+          } else {
+            btn.classList.remove("active");
+          }
+        });
+      }
+
+      const observerOptions = {
+        root: null,
+        rootMargin: "-25% 0px -45% 0px",
+        threshold: 0,
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (
+            entry.isIntersecting &&
+            window.scrollY >= window.innerHeight * 0.15
+          ) {
+            setActiveNav(entry.target.id);
+          }
+        });
+      }, observerOptions);
+
+      sections.forEach((section) => observer.observe(section));
+
+      window.addEventListener("scroll", () => {
+        if (window.scrollY < window.innerHeight * 0.15) {
+          setActiveNav("overview-section");
+        }
+      });
+
+      const joinBtn = document.querySelector(".joinBtn");
+      if (joinBtn) {
+        joinBtn.addEventListener("click", () => {
+          window.location.href = "https://discord.gg/E2PRC2csAx";
+        });
+      }
+
+      // --- Translator Logic ---
+      // --- Translator Logic ---
+      const translateBtn = document.getElementById("translateBtn");
+      const darijaInput = document.getElementById("darijaInput");
+      const englishOutput = document.getElementById("englishOutput");
+
+      // Main translation function
+      async function handleTranslation() {
+        const text = darijaInput.value.trim();
+        if (!text) return;
+
+        englishOutput.value = "Translating...";
+
+        try {
+          const response = await fetch("http://127.0.0.1:5000/translate", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ text: text }),
+          });
+
+          const data = await response.json();
+          if (data.translation) {
+            englishOutput.value = data.translation;
+          } else {
+            englishOutput.value =
+              "Error: " + (data.error || "Failed to translate");
+          }
+        } catch (err) {
+          englishOutput.value = "Error connecting to translation server.";
+        }
+
+        darijaInput.value = ""; // Clear input box automatically
+      }
+
+      // Trigger translation on button click
+      translateBtn.addEventListener("click", handleTranslation);
+
+      // Trigger translation on 'Enter' key press (Shift + Enter still adds a new line)
+      darijaInput.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" && !event.shiftKey) {
+          event.preventDefault(); // Prevents adding a blank line in the textarea
+          handleTranslation();
+        }
+      });
+    </script>
+  </body>
+</html>
