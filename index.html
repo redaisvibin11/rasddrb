@@ -1030,12 +1030,10 @@
       }
 
       // --- Translator Logic ---
-      // --- Translator Logic ---
       const translateBtn = document.getElementById("translateBtn");
       const darijaInput = document.getElementById("darijaInput");
       const englishOutput = document.getElementById("englishOutput");
 
-      // Main translation function
       async function handleTranslation() {
         const text = darijaInput.value.trim();
         if (!text) return;
@@ -1043,7 +1041,7 @@
         englishOutput.value = "Translating...";
 
         try {
-          const response = await fetch("http://127.0.0.1:5000/translate", {
+          const response = await fetch("/translate", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ text: text }),
@@ -1060,16 +1058,14 @@
           englishOutput.value = "Error connecting to translation server.";
         }
 
-        darijaInput.value = ""; // Clear input box automatically
+        darijaInput.value = "";
       }
 
-      // Trigger translation on button click
       translateBtn.addEventListener("click", handleTranslation);
 
-      // Trigger translation on 'Enter' key press (Shift + Enter still adds a new line)
       darijaInput.addEventListener("keydown", (event) => {
         if (event.key === "Enter" && !event.shiftKey) {
-          event.preventDefault(); // Prevents adding a blank line in the textarea
+          event.preventDefault();
           handleTranslation();
         }
       });
