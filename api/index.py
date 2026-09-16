@@ -5,7 +5,7 @@ from google import genai
 
 app = Flask(__name__)
 
-MODEL = "gemini-2.0-flash"
+MODEL = "gemini-3.6-flash"
 
 SYSTEM_PROMPT = (
     "You are a translator for Moroccan Darija. "
