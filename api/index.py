@@ -27,10 +27,6 @@ def get_client():
     return _client
 
 
-# Several paths are registered because Vercel rewrites keep the destination
-# path when the request reaches the function.
-@app.route("/", methods=["POST"])
-@app.route("/translate", methods=["POST"])
 @app.route("/api/index", methods=["POST"])
 def translate():
     data = request.get_json(silent=True) or {}
@@ -55,8 +51,6 @@ def translate():
     return jsonify({"translation": translation})
 
 
-@app.route("/", methods=["GET"])
-@app.route("/translate", methods=["GET"])
 @app.route("/api/index", methods=["GET"])
 def health():
     return jsonify(
