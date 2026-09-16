@@ -4,47 +4,49 @@ from flask_cors import CORS
 from google import genai
 from dotenv import load_dotenv
 
+# Load environment variables
 load_dotenv()
 
 app = Flask(__name__)
-CORS(app)
+CORS(app)  # Enable CORS for frontend requests
 
-client = genai.Client()
+# Initialize Gemini Client
+# Set GEMINI_API_KEY in your Vercel Dashboard -> Settings -> Environment Variables
+api_key = os.getenv("GEMINI_API_KEY")
+client = genai.Client(api_key=api_key) if api_key else None
 
-SYSTEM_INSTRUCTION = (
-    "You are a translator. Translate the given Moroccan Darija text (written in Arabizi/chat Arabic using numbers "
-    "like 3, 7, 9 or Arabic script) accurately into clear English. Output ONLY the English translation, nothing else."
-)
+
+@app.route("/", methods=["GET"])
+def home():
+    return jsonify({"status": "API is running"}), 200
 
 
 @app.route("/translate", methods=["POST"])
+@app.route("/api/translate", methods=["POST"])
 def translate():
-    data = request.get_json()
-    if not data or "text" not in data:
-        return jsonify({"error": "No text provided"}), 400
-
-    user_text = data["text"]
-
     try:
+        data = request.get_json(silent=True) or {}
+        text = data.get("text", "").strip()
+
+        if not text:
+            return jsonify({"error": "No text provided"}), 400
+
+        if not client:
+            return jsonify({"error": "GEMINI_API_KEY is not configured on Vercel"}), 500
+
+        prompt = f"Translate the following Moroccan Darija text to English. Return only the translated English text:\n\n{text}"
+
         response = client.models.generate_content(
-            model="gemini-3.6-flash",
-            contents=f"Translate this text to English: {user_text}",
-            config=genai.types.GenerateContentConfig(
-                system_instruction=SYSTEM_INSTRUCTION, temperature=0.3
-            ),
+            model="gemini-2.5-flash",
+            contents=prompt,
         )
-        return jsonify({"translation": response.text.strip()})
+
+        return jsonify({"translation": response.text.strip()}), 200
+
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
 
+# Required for local testing (`python api/index.py`)
 if __name__ == "__main__":
-    app.run(port=5000, debug=True)
-from flask import Flask
-
-app = Flask(__name__)
-
-
-@app.route("/api/index", methods=["GET"])
-def handler():
-    return "OK"
+    app.run(host="0.0.0.0", port=5000, debug=True)
