@@ -1,13 +1,8 @@
 ﻿{
-  "cleanUrls": true,
   "rewrites": [
     {
       "source": "/translate",
       "destination": "/api/index.py"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
     }
   ]
 }
