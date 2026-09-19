@@ -681,8 +681,6 @@ p {
   border-color: rgba(254, 44, 85, 0.3);
 }
 .card-tiktok:hover {
-  background-color: #171018;
-  border-color: #fe2c55;
   transform: translateY(-4px);
   box-shadow:
     -4px 4px 20px rgba(37, 244, 238, 0.3),
@@ -699,8 +697,6 @@ p {
   border-color: rgba(225, 48, 108, 0.3);
 }
 .card-instagram:hover {
-  background-color: #211320;
-  border-color: #e1306c;
   transform: translateY(-4px);
   box-shadow: 0 10px 25px rgba(225, 48, 108, 0.35);
 }
