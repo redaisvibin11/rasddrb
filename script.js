@@ -1,3 +1,25 @@
+function save() {
+  localStorage.setItem(
+    "theme",
+    document.body.classList.contains("light") ? "light" : "dark",
+  );
+}
+const thmBtn = document.getElementById("themeBtn");
+thmBtn.addEventListener("click", () => {
+  document.body.classList.toggle("light");
+  save();
+});
+const savedTheme = localStorage.getItem("theme");
+function loadTheme() {
+  if (savedTheme === "light") {
+    document.body.classList.add("light");
+  } else {
+    document.body.classList.remove("light");
+  }
+}
+
+loadTheme();
+
 const navButtons = document.querySelectorAll(".navBtn");
 const sections = document.querySelectorAll(
   "#overview-section, #features-section, #translator-section, #roles-section, #admins, #HOO, #socials-section, #join-section",
@@ -90,8 +112,4 @@ darijaInput.addEventListener("keydown", (event) => {
     event.preventDefault();
     handleTranslation();
   }
-});
-const thmBtn = document.getElementById("themeBtn");
-thmBtn.addEventListener("click", () => {
-  document.body.classList.toggle("light");
 });

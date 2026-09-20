@@ -540,7 +540,163 @@ p {
 .card-aisha:hover p {
   color: #bac2de;
 }
+/* ===== Light-mode card backgrounds, per person =====
+   Dark mode is completely untouched — these rules only fire
+   under body.light. Rexfy's card has no theme class (just plain
+   .intro-card), so none of these selectors can ever match it,
+   in either mode. */
 
+body.light .card-mjd {
+  background-color: #f5f0fb;
+}
+body.light .card-mjd h2 {
+  color: #7c5cbf;
+}
+body.light .card-mjd p {
+  color: #4b5262;
+}
+
+body.light .card-ceo {
+  background-color: #fdf1f2;
+}
+body.light .card-ceo h2 {
+  color: #a8323e;
+}
+body.light .card-ceo p {
+  color: #4b5262;
+}
+
+body.light .card-guzman {
+  background-color: #fdf2f2;
+}
+body.light .card-guzman h2 {
+  color: #b33643;
+}
+body.light .card-guzman p {
+  color: #4b5262;
+}
+
+body.light .card-chippy {
+  background-color: #eef7f7;
+}
+body.light .card-chippy h2 {
+  color: #2f6f83;
+}
+body.light .card-chippy p {
+  color: #4b5262;
+}
+
+body.light .card-minimm {
+  background-color: #fbf6ea;
+}
+body.light .card-minimm h2 {
+  color: #a87b1f;
+}
+body.light .card-minimm p {
+  color: #4b5262;
+}
+
+body.light .card-lmx {
+  background-color: #f2f3f7;
+}
+body.light .card-lmx h2 {
+  color: #5b6079;
+}
+body.light .card-lmx p {
+  color: #4b5262;
+}
+
+body.light .card-mala2ika {
+  background-color: #eef3fd;
+}
+body.light .card-mala2ika h2 {
+  color: #5b7fd6;
+}
+body.light .card-mala2ika p {
+  color: #4b5262;
+}
+
+body.light .card-salma {
+  background-color: #fdf2ee;
+}
+body.light .card-salma h2 {
+  color: #c0573f;
+}
+body.light .card-salma p {
+  color: #4b5262;
+}
+
+body.light .card-issy {
+  background-color: #fdeef0;
+}
+body.light .card-issy h2 {
+  color: #c23649;
+}
+body.light .card-issy p {
+  color: #4b5262;
+}
+
+body.light .card-reda {
+  background-color: #fff6e8;
+}
+body.light .card-reda h2 {
+  color: #cc7f00;
+}
+body.light .card-reda p {
+  color: #4b5262;
+}
+
+body.light .card-badrr {
+  background-color: #fdf1ea;
+}
+body.light .card-badrr h2 {
+  color: #a5401d;
+}
+body.light .card-badrr p {
+  color: #4b5262;
+}
+
+body.light .card-ebony {
+  background-color: #faf3f0;
+}
+body.light .card-ebony h2 {
+  color: #7d5c4f;
+}
+body.light .card-ebony p {
+  color: #4b5262;
+}
+
+body.light .card-aisha {
+  background-color: #f4f5fb;
+}
+body.light .card-aisha h2 {
+  color: #5865f2;
+}
+body.light .card-aisha p {
+  color: #4b5262;
+}
+/* Rexfy's card — gold-themed like its own hover state,
+   in light mode. Dark mode is untouched (falls back to the
+   normal .intro-card look, same as always). */
+body.light .card-rexfy {
+  background-color: #fff9ec;
+}
+body.light .card-rexfy h2 {
+  color: #a6791f;
+}
+body.light .card-rexfy p {
+  color: #4b5262;
+}
+body.light .card-rexfy .admin-avatar {
+  border-color: #d4af37;
+}
+
+/* Hover — a visible gold border plus a scale-up, in both themes */
+.card-rexfy:hover {
+  border-color: #d4af37;
+  transform: scale(1.04);
+  box-shadow: 0 10px 25px rgba(212, 175, 55, 0.35);
+}
 .translator-card {
   background-color: var(--card-bg);
   border: 1px solid var(--card-border);
