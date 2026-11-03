@@ -540,6 +540,23 @@ p {
 .card-aisha:hover p {
   color: #bac2de;
 }
+.card-luluw {
+  border-color: rgba(230, 57, 70, 0.3);
+}
+.card-luluw:hover {
+  background-color: #2b1417;
+  border-color: #e63946;
+  box-shadow: 0 8px 25px rgba(230, 57, 70, 0.3);
+}
+.card-luluw:hover .admin-avatar {
+  border-color: #ff4d5a;
+}
+.card-luluw:hover h2 {
+  color: #ff4d5a;
+}
+.card-luluw:hover p {
+  color: #bac2de;
+}
 /* ===== Light-mode card backgrounds, per person =====
    Dark mode is completely untouched — these rules only fire
    under body.light. Rexfy's card has no theme class (just plain
@@ -673,6 +690,15 @@ body.light .card-aisha h2 {
   color: #5865f2;
 }
 body.light .card-aisha p {
+  color: #4b5262;
+}
+body.light .card-luluw {
+  background-color: #fdf2f2;
+}
+body.light .card-luluw h2 {
+  color: #d62828;
+}
+body.light .card-luluw p {
   color: #4b5262;
 }
 /* Rexfy's card — gold-themed like its own hover state,
